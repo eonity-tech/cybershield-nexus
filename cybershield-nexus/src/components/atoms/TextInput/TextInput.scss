@@ -1,0 +1,104 @@
+@use "../../../styles/variables" as *;
+
+.nexus-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+
+  .nexus-label {
+    color: $text-muted;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+
+    .required-mark {
+      color: $danger;
+      margin-left: 4px;
+      font-weight: bold;
+    }
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .nexus-input {
+      width: 100%;
+      background: rgba($card-bg, 0.5);
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+      padding: 0.75rem;
+      color: $text-main;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &.has-icon {
+        padding-right: 40px; 
+      }
+
+      &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 0 1px rgba($primary, 0.2);
+      }
+
+      &.error {
+        border-color: $danger;
+        &:focus { box-shadow: 0 0 0 1px rgba($danger, 0.2); }
+      }
+
+      &::placeholder { color: rgba($text-muted, 0.5); }
+    }
+
+    // Le bouton Oeil
+    .toggle-password-btn {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: $text-muted;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $primary;
+      }
+      
+      &:focus {
+        outline: none;
+        color: $text-main;
+      }
+    }
+  }
+
+  .error-message {
+    color: $danger;
+    font-size: 0.75rem;
+    margin-top: -2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &::before {
+      content: "!";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background: rgba($danger, 0.1);
+      border: 1px solid $danger;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: bold;
+    }
+  }
+}

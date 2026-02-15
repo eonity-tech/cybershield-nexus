@@ -1,0 +1,115 @@
+@use "../../../styles/variables" as *;
+
+.nexus-select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+
+  .nexus-label {
+    color: $text-muted;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .nexus-select-input {
+    background: $card-bg;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    min-height: 42px;
+    padding: 0.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover { border-color: $text-muted; }
+    &.active { 
+      border-color: $primary; 
+      box-shadow: 0 0 0 1px $primary;
+    }
+
+    .selected-content {
+      flex-grow: 1;
+    }
+
+    .placeholder { color: $text-muted; opacity: 0.7; }
+    .single-value { color: $text-main; }
+    
+    .arrow-icon {
+      color: $text-muted;
+      font-size: 0.7rem;
+      margin-left: 8px;
+    }
+  }
+
+  // Styles des Chips
+  .chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 2px 0;
+
+    .nexus-chip {
+      background: rgba($primary, 0.2);
+      color: lighten($primary, 10%);
+      border: 1px solid rgba($primary, 0.3);
+      padding: 2px 8px;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .chip-remove {
+        cursor: pointer;
+        font-size: 1.1rem;
+        line-height: 0.8;
+        opacity: 0.7;
+        &:hover { opacity: 1; color: white; }
+      }
+    }
+  }
+
+  .nexus-options-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background: lighten($card-bg, 5%); 
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+
+    .nexus-option {
+      padding: 10px 12px;
+      color: $text-muted;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+
+      &:hover {
+        background: rgba($primary, 0.1);
+        color: $text-main;
+      }
+
+      &.selected {
+        background: rgba($primary, 0.2);
+        color: $primary;
+        font-weight: 600;
+      }
+    }
+  }
+}

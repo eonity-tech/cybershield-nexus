@@ -1,0 +1,234 @@
+@use "../../../styles/variables" as *;
+
+.nexus-textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nexus-label {
+      color: $text-muted;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .nexus-tabs {
+      display: flex;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 2px;
+      border-radius: 6px;
+
+      button {
+        background: transparent;
+        border: none;
+        color: $text-muted;
+        font-size: 0.75rem;
+        cursor: pointer;
+        padding: 4px 10px;
+        border-radius: 4px;
+        transition: all 0.2s;
+        font-weight: 500;
+
+        &:hover {
+          color: $text-main;
+          background: rgba(255, 255, 255, 0.05);
+        }
+
+        &.active {
+          background: rgba($primary, 0.2);
+          color: $primary;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    overflow: hidden;
+    background: rgba($card-bg, 0.5);
+    transition: all 0.2s ease-in-out;
+    position: relative;
+
+    &:focus-within {
+      border-color: $primary;
+      box-shadow: 0 0 0 1px rgba($primary, 0.2);
+    }
+
+    &.error {
+      border-color: $danger;
+      &:focus-within {
+        box-shadow: 0 0 0 1px rgba($danger, 0.2);
+      }
+    }
+
+    .nexus-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 10px;
+      background: lighten($card-bg, 3%);
+      border-bottom: 1px solid $border-color;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid transparent;
+        color: $text-muted;
+        cursor: pointer;
+        padding: 4px 8px;
+        min-width: 28px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+
+        &:hover {
+          background: rgba($primary, 0.1);
+          color: $primary;
+          border-color: rgba($primary, 0.2);
+        }
+      }
+
+      .separator {
+        width: 1px;
+        height: 16px;
+        background: $border-color;
+        margin: 0 6px;
+      }
+    }
+
+    .nexus-textarea {
+      background: transparent;
+      border: none;
+      padding: 1rem;
+      color: $text-main;
+      min-height: 120px;
+      resize: vertical;
+      outline: none;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      width: 100%;
+
+      &::placeholder {
+        color: rgba($text-muted, 0.6);
+      }
+    }
+
+    .nexus-markdown-preview {
+      padding: 1rem;
+      color: $text-main;
+      min-height: 120px;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      background: rgba(0, 0, 0, 0.1);
+
+      .empty-preview {
+        color: $text-muted;
+        font-style: italic;
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+
+      h1, h2, h3, h4 {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        color: #fff;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      h1 { font-size: 1.5rem; border-bottom: 1px solid $border-color; padding-bottom: 0.3em; }
+      h2 { font-size: 1.3rem; }
+      h3 { font-size: 1.1rem; color: $primary; }
+
+      p { margin-bottom: 0.8em; }
+
+      strong { color: #fff; font-weight: 700; }
+      em { font-style: italic; color: lighten($text-muted, 20%); }
+
+      ul, ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1em;
+        li { margin-bottom: 0.25em; marker: $primary; }
+      }
+
+      blockquote {
+        border-left: 3px solid $primary;
+        margin: 1em 0;
+        padding-left: 1em;
+        color: $text-muted;
+        background: rgba($primary, 0.05);
+        padding: 0.5em 1em;
+        border-radius: 0 4px 4px 0;
+      }
+
+      code {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace;
+        color: $warning;
+        font-size: 0.85em;
+        border: 1px solid rgba($border-color, 0.5);
+      }
+
+      pre {
+        background: #0d1117;
+        padding: 1em;
+        border-radius: $radius-md;
+        overflow-x: auto;
+        margin-bottom: 1em;
+        border: 1px solid $border-color;
+
+        code {
+          background: transparent;
+          color: $text-main;
+          padding: 0;
+          border: none;
+        }
+      }
+
+      a {
+        color: $primary;
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+      }
+    }
+  }
+
+  .error-message {
+    margin-top: 4px;
+    color: $danger;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    &::before {
+      content: "!";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background: rgba($danger, 0.2);
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: bold;
+    }
+  }
+}

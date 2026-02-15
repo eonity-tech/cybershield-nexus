@@ -1,0 +1,24 @@
+// 1. Couleurs de base
+$dark-bg: #0f172a;       // Bleu très sombre (fond principal)
+$card-bg: #1e293b;       // Bleu ardoise (fond des cartes/sidebar)
+$border-color: #334155;  // Couleur des bordures discrètes
+
+// 2. Couleurs d'accentuation
+$primary: #3b82f6;       // Bleu brillant (boutons, liens)
+$primary-hover: #60a5fa; 
+$success: #22c55e;       // Vert (badges "Actif")
+$warning: #f59e0b;       // Orange (badges "Maintenance")
+$danger: #ef4444;        // Rouge (badges "Critique", alertes)
+
+// 3. Couleurs de texte
+$text-main: #f8fafc;     // Blanc cassé (texte principal)
+$text-muted: #94a3b8;    // Gris bleu (labels, textes secondaires)
+
+// 4. Dimensions et espacements
+$sidebar-width: 260px;
+$radius-md: 8px;
+$radius-lg: 12px;
+
+// 5. Ombres et effets
+$shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$glass-bg: rgba(30, 41, 59, 0.7);

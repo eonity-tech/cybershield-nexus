@@ -1,0 +1,43 @@
+@use "../../../styles/variables" as *;
+
+.nexus-checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.75rem;
+  user-select: none;
+
+  input {
+    display: none; // On cache l'input natif pour styliser le checkmark
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    background: $card-bg;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  input:checked + .checkmark {
+    background: $primary;
+    border-color: $primary;
+    &:after { display: block; }
+  }
+
+  .label-text { color: $text-main; font-size: 0.9rem; }
+}
