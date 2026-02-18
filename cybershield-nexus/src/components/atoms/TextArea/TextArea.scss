@@ -147,7 +147,7 @@
       h1, h2, h3, h4 {
         margin-top: 1em;
         margin-bottom: 0.5em;
-        color: #fff;
+        color: $light;
         font-weight: 600;
         line-height: 1.2;
       }
@@ -157,7 +157,7 @@
 
       p { margin-bottom: 0.8em; }
 
-      strong { color: #fff; font-weight: 700; }
+      strong { color: $light; font-weight: 700; }
       em { font-style: italic; color: lighten($text-muted, 20%); }
 
       ul, ol {
@@ -187,7 +187,7 @@
       }
 
       pre {
-        background: #0d1117;
+        background: $code-bg;
         padding: 1em;
         border-radius: $radius-md;
         overflow-x: auto;

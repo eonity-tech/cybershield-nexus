@@ -8,7 +8,7 @@
   user-select: none;
 
   input {
-    display: none; // On cache l'input natif pour styliser le checkmark
+    display: none;
   }
 
   .checkmark {
@@ -27,7 +27,7 @@
       top: 2px;
       width: 5px;
       height: 10px;
-      border: solid white;
+      border: solid $light;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }

@@ -1,0 +1,45 @@
+@use "../../styles/variables" as *;
+
+.nexus-dashboard-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: $dark-bg;
+  overflow: hidden;
+
+  // Zone principale (à droite de la sidebar)
+  .dashboard-main {
+    flex: 1;
+    width: 0;
+    padding: 2.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 1.5rem;
+
+      h1 {
+        color: $light;
+        font-size: 1.8rem;
+        margin: 0 0 0.5rem 0;
+        font-weight: 700;
+      }
+
+      .user-info {
+        color: $text-muted;
+        font-size: 0.9rem;
+        font-family: monospace;
+      }
+    }
+
+    // Grille pour les cartes (StatCards)
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+}

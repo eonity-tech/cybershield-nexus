@@ -6,8 +6,8 @@
   font-weight: 400;
 
   color-scheme: dark;
-  color: #f8fafc;
-  background-color: #0f172a;
+  color: $text-main;
+  background-color: $dark-bg;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,7 +19,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0f172a;
+  background-color: $dark-bg;
 }
 
 * {
@@ -28,16 +28,16 @@ body {
 
 a {
   font-weight: 500;
-  color: #3b82f6;
+  color: $primary;
   text-decoration: inherit;
   transition: color 0.2s;
 
   &:hover {
-    color: #60a5fa;
+    color: $primary-hover;
   }
 }
 
 h1, h2, h3 {
   margin-top: 0;
-  color: #ffffff;
+  color: $light;
 }

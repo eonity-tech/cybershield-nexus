@@ -1,3 +1,5 @@
+@use "../../../styles/variables" as *;
+
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -8,8 +10,8 @@
   text-transform: uppercase;
   letter-spacing: 0.02em;
 
-  &.success { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-  &.danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
-  &.warning { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
-  &.neutral { background: rgba(148, 163, 184, 0.2); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+  &.success { background: rgba(16, 185, 129, 0.2); color: $success; border: 1px solid rgba(16, 185, 129, 0.3); }
+  &.danger { background: rgba(239, 68, 68, 0.2); color: $danger; border: 1px solid rgba(239, 68, 68, 0.3); }
+  &.warning { background: rgba(245, 158, 11, 0.2); color: $warning; border: 1px solid rgba(245, 158, 11, 0.3); }
+  &.neutral { background: rgba(148, 163, 184, 0.2); color: $text-muted; border: 1px solid rgba(148, 163, 184, 0.3); }
 }

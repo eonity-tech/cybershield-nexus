@@ -6,9 +6,10 @@ $border-color: #334155;  // Couleur des bordures discrètes
 // 2. Couleurs d'accentuation
 $primary: #3b82f6;       // Bleu brillant (boutons, liens)
 $primary-hover: #60a5fa; 
-$success: #22c55e;       // Vert (badges "Actif")
-$warning: #f59e0b;       // Orange (badges "Maintenance")
-$danger: #ef4444;        // Rouge (badges "Critique", alertes)
+$success: #1ea54f;       // Vert (badges "Actif")
+$warning: #da9112;       // Orange (badges "Maintenance")
+$danger: #cc3a3a;        // Rouge (badges "Critique", alertes)
+$light: #ffffff;        // Blanc (éléments clairs)
 
 // 3. Couleurs de texte
 $text-main: #f8fafc;     // Blanc cassé (texte principal)
@@ -22,3 +23,14 @@ $radius-lg: 12px;
 // 5. Ombres et effets
 $shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 $glass-bg: rgba(30, 41, 59, 0.7);
+
+// 6. Autres variables
+$table-th-color : #94a3b8; // Couleur des textes dans les table
+$icon-color: #64748b; // Couleur des icônes dans les cellules de table
+$status-badge-bg: rgba(255, 255, 255, 0.03); // Fond des badges de statut
+$status-critical-bg: rgba(239, 68, 68, 0.1); // Fond des badges critiques
+$status-healthy-bg: rgba(34, 197, 94, 0.1); // Fond des badges sains
+$details-dropdown-bg: rgba(15, 23, 42, 0.8); // Fond du dropdown de détails
+$dropdown-header-bg: rgba(255, 255, 255, 0.05); // Fond des headers dans les dropdowns
+$slate-bg: #364254; // Couleur de fond pour les boutons "slate"
+$item-color: #cbd5e1; // Couleur des items dans les listes
