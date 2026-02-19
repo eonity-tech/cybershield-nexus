@@ -11,18 +11,101 @@
   top: 0;
   z-index: 1000;
   flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+  // --- ÉTAT RÉDUIT (COLLAPSED) ---
+  &.collapsed {
+    width: 80px;
+
+    .logo-text,
+    .nav-item .label,
+    .user-box,
+    .logout-text {
+      opacity: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    .sidebar-header {
+      padding: 2.5rem 0;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-links {
+      padding: 0 0.5rem;
+      .nav-item {
+        justify-content: center;
+        padding: 12px 0;
+      }
+    }
+
+    .sidebar-footer {
+      padding: 1.5rem 0.5rem;
+      .logout-btn {
+        justify-content: center;
+        padding: 10px 0;
+      }
+    }
+  }
+
+  // --- HEADER ---
   .sidebar-header {
     padding: 2.5rem 1.5rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
-    .logo-text { font-weight: 800; font-size: 1.4rem; color: $primary; letter-spacing: 2px; }
+    overflow: hidden;
+    white-space: nowrap;
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+
+    .logo-text { 
+      font-weight: 800; 
+      font-size: 1.4rem; 
+      color: $primary; 
+      letter-spacing: 2px; 
+      transition: opacity 0.2s;
+    }
+
+    // Le bouton de bascule
+    .toggle-btn {
+      background: transparent;
+      border: 1px solid $card-bg;
+      color: $text-muted;
+      border-radius: $radius-md;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        color: $text-main;
+        background: $card-bg;
+      }
+    }
   }
 
+  // --- NAV LINKS ---
   .nav-links {
     flex: 1;
     padding: 0 1rem;
+    overflow: hidden;
+
     .nav-item {
       display: flex;
       align-items: center;
@@ -33,20 +116,37 @@
       cursor: pointer;
       margin-bottom: 4px;
       transition: 0.2s;
+      white-space: nowrap;
 
       &:hover { background: $card-bg; color: $text-main; }
       &.active { background: $primary; color: $text-main; font-weight: 600; }
+
+      .icon {
+        font-size: 1.2rem;
+        display: flex;
+      }
+
+      .label {
+        transition: opacity 0.2s;
+      }
     }
   }
 
+  // --- FOOTER ---
   .sidebar-footer {
     padding: 1.5rem;
     border-top: 1px solid $card-bg;
+    overflow: hidden;
+    white-space: nowrap;
+
     .user-box {
         margin-bottom: 1rem;
+        transition: opacity 0.2s;
+        
         .user-label { font-size: 0.7rem; color: $text-muted; text-transform: uppercase; margin: 0; }
         .user-name { color: $text-main; font-weight: 600; margin: 0; }
     }
+
     .logout-btn {
       width: 100%;
       background: $dark-bg;
@@ -59,7 +159,13 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      transition: 0.2s;
+
       &:hover { background: $danger; }
+
+      .logout-text {
+        transition: opacity 0.2s;
+      }
     }
   }
 }

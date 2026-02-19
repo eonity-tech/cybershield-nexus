@@ -7,6 +7,7 @@
   width: 100%;
   font-family: 'Inter', sans-serif;
 
+  // --- LABEL ---
   .nexus-label {
     color: $text-muted;
     font-size: 0.875rem;
@@ -21,12 +22,34 @@
     }
   }
 
+  // --- WRAPPER DE L'INPUT ET DES ICÔNES ---
   .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
 
+    // --- ICÔNES (Préfixe et Suffixe) ---
+    .icon-prefix, .icon-suffix {
+      position: absolute;
+      color: $icon-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .icon-prefix {
+      left: 12px;
+    }
+
+    .icon-suffix {
+      right: 12px;
+      pointer-events: auto; 
+    }
+
+    // --- CHAMP DE SAISIE PRINCIPAL ---
     .nexus-input {
       width: 100%;
       background: rgba($card-bg, 0.5);
@@ -37,7 +60,11 @@
       outline: none;
       transition: all 0.2s ease;
 
-      &.has-icon {
+      &.has-prefix {
+        padding-left: 38px;
+      }
+
+      &.has-suffix, &.has-icon {
         padding-right: 40px; 
       }
 
@@ -48,13 +75,16 @@
 
       &.error {
         border-color: $danger;
-        &:focus { box-shadow: 0 0 0 1px rgba($danger, 0.2); }
+        &:focus { 
+          box-shadow: 0 0 0 1px rgba($danger, 0.2); 
+        }
       }
 
-      &::placeholder { color: rgba($text-muted, 0.5); }
+      &::placeholder { 
+        color: rgba($text-muted, 0.5); 
+      }
     }
 
-    // Le bouton Oeil
     .toggle-password-btn {
       position: absolute;
       right: 10px;
@@ -79,6 +109,7 @@
     }
   }
 
+  // --- MESSAGE D'ERREUR ---
   .error-message {
     color: $danger;
     font-size: 0.75rem;

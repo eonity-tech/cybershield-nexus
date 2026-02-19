@@ -4,6 +4,8 @@ import "./TextInput.scss";
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label?: string;
 	error?: string;
+	iconPrefix?: React.ReactNode;
+	iconSuffix?: React.ReactNode;
 }
 
 const TextInput = ({
@@ -11,15 +13,13 @@ const TextInput = ({
 	error,
 	required,
 	type,
+	iconPrefix,
+	iconSuffix,
 	...props
 }: TextInputProps) => {
 	const [showPassword, setShowPassword] = useState(false);
 
-	// Vérifie si c'est un champ mot de passe à l'origine
 	const isPassword = type === "password";
-
-	// Si ce n'est pas un password, on utilise le type tel quel (text, email, etc.).
-	// Affiche le champ en clair si c'est un password et que showPassword est true, sinon en password.
 	const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
 	return (
@@ -32,14 +32,17 @@ const TextInput = ({
 			)}
 
 			<div className="input-wrapper">
+				{iconPrefix && (
+					<span className="icon-prefix">{iconPrefix}</span>
+				)}
+
 				<input
-					className={`nexus-input ${error ? "error" : ""} ${isPassword ? "has-icon" : ""}`}
+					className={`nexus-input ${error ? "error" : ""} ${isPassword ? "has-icon" : ""} ${iconPrefix ? "has-prefix" : ""} ${iconSuffix && !isPassword ? "has-suffix" : ""}`}
 					required={required}
 					type={inputType}
 					{...props}
 				/>
 
-				{/* Bouton Oeil (seulement si c'est un champ password) */}
 				{isPassword && (
 					<button
 						type="button"
@@ -51,7 +54,6 @@ const TextInput = ({
 								: "Afficher le mot de passe"
 						}>
 						{showPassword ? (
-							// Icône Oeil Barré (Masquer)
 							<svg
 								width="20"
 								height="20"
@@ -65,7 +67,6 @@ const TextInput = ({
 								<path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
 							</svg>
 						) : (
-							// Icône Oeil (Afficher)
 							<svg
 								width="20"
 								height="20"
@@ -80,6 +81,10 @@ const TextInput = ({
 							</svg>
 						)}
 					</button>
+				)}
+
+				{iconSuffix && !isPassword && (
+					<span className="icon-suffix">{iconSuffix}</span>
 				)}
 			</div>
 

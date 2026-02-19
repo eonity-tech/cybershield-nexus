@@ -1,0 +1,24 @@
+@use "../../../styles/variables" as *;
+
+.nexus-search-bar {
+    width: 60vw;
+    
+    .clear-btn {
+        background: none;
+        border: none;
+        color: $table-th-color;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        transition: color 0.2s;
+        
+        &:hover {
+            color: $danger;
+        }
+    }
+    
+    .nexus-input-group {
+        margin-bottom: 0;
+    }
+}

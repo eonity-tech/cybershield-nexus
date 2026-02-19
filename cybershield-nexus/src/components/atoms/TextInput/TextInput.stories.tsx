@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import TextInput from "./TextInput";
 import { useState } from "react";
+import { FaSearch, FaEnvelope, FaLock } from "react-icons/fa";
 
 const meta = {
 	title: "Atoms/TextInput",
@@ -46,7 +47,6 @@ export const RequiredWithError: Story = {
 // --- 4. Variante "Intelligente" (Validation dynamique) ---
 export const EmailValidation: Story = {
 	render: (args) => {
-		// State local pour gérer la valeur et l'erreur
 		const [value, setValue] = useState("");
 		const [error, setError] = useState("");
 
@@ -65,6 +65,8 @@ export const EmailValidation: Story = {
 			setValue(e.target.value);
 			if (error) setError("");
 		};
+		
+		const iconPrefix = <FaEnvelope />;
 
 		return (
 			<TextInput
@@ -73,6 +75,7 @@ export const EmailValidation: Story = {
 				onChange={handleChange}
 				onBlur={() => validateEmail(value)}
 				error={error}
+				iconPrefix={iconPrefix}
 			/>
 		);
 	},
@@ -114,7 +117,6 @@ export const PasswordValidation: Story = {
             const newValue = e.target.value;
             setValue(newValue);
 
-            // On efface l'erreur SEULEMENT si toutes les conditions sont réunies
             const isValid = 
                 newValue.length >= 8 &&      // 8 caractères
                 /[0-9]/.test(newValue) &&    // Un chiffre
@@ -124,7 +126,9 @@ export const PasswordValidation: Story = {
             if (error && isValid) {
                 setError("");
             }
-        };
+		};
+		
+		const iconPrefix = <FaLock />;
 
         return (
             <TextInput
@@ -132,7 +136,8 @@ export const PasswordValidation: Story = {
                 value={value}
                 onChange={handleChange}
                 onBlur={() => validatePassword(value)}
-                error={error}
+				error={error}
+				iconPrefix={iconPrefix}
             />
         );
     },
@@ -141,5 +146,23 @@ export const PasswordValidation: Story = {
         type: "password",
         placeholder: "Ex: Nexus2024",
         required: true,
+    },
+};
+
+// --- 6. Variante avec Icônes ---
+export const WithIcons: Story = {
+    args: {
+        label: "Recherche globale",
+        placeholder: "IP, Hostname, CVE...",
+        iconPrefix: <FaSearch />,
+    },
+};
+
+export const EmailWithIcon: Story = {
+    args: {
+        label: "Contact",
+        type: "email",
+        placeholder: "admin@nexus.local",
+        iconPrefix: <FaEnvelope />,
     },
 };
