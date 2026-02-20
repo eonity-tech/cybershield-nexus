@@ -5,32 +5,31 @@ const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
 });
 
-apiClient.interceptors.request.use((config) => {
-    // 1. Récupération dynamique du token depuis l'instance Keycloak
+apiClient.interceptors.request.use(async (config) => {
+    // 1. JWT (Bearer Token)
     const token = keycloak.token;
+
+    // 2. Clé API (On force la valeur du Postman si la variable d'env est vide)
     const apiKey = import.meta.env.VITE_API_KEY;
 
+    // 3. Tenant ID (Stocké dans localStorage après connexion, sinon fallback à 'client-free')
+    const tenantId = localStorage.getItem('nexus_tenant_id') || 'client-free';
+
+    // Injection dans les headers
     if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
     }
 
-    // 2. Ajout des headers spécifiques (x-api-key et Tenant)
     config.headers['x-api-key'] = apiKey;
-    config.headers['X-Tenant-ID'] = 'client-free';
-
-    // 3. Cache Interceptor (Équivalent de ton code Angular)
-    if (config.url?.includes('/api/')) {
-        config.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
-        config.headers['Pragma'] = 'no-cache';
-        config.headers['Expires'] = '0';
-    }
+    config.headers['X-Tenant-ID'] = tenantId;
 
     return config;
 }, (error) => {
     return Promise.reject(error);
 });
 
-// Interceptor de réponse pour gérer les erreurs d'authentification (ex: token expiré)
+
+// Interceptor de réponse pour gérer les erreurs d'authentification
 apiClient.interceptors.response.use(
     (response) => response,
     async (error) => {

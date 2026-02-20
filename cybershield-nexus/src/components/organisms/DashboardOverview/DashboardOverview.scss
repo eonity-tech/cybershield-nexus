@@ -4,7 +4,7 @@
   width: 100%;
   animation: fadeIn 0.5s ease-in-out;
 
-  // --- NOUVEAU : STYLE DES GRAPHIQUES ---
+  // --- STYLE DES GRAPHIQUES ---
   .dashboard-charts-row {
     display: flex;
     gap: 20px;
@@ -15,6 +15,7 @@
       padding: 20px;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.05);
+      flex: 1;
 
       h3 {
         margin-top: 0;
@@ -33,15 +34,45 @@
     }
   }
 
-  // --- STYLE DE LA TABLEAU ---
+  // --- GRILLE DE STATISTIQUES & SKELETONS ---
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    .stat-card-skeleton {
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      .nexus-skeleton {
+        border-radius: 12px;
+      }
+    }
+  }
+
+  .section-title {
+    color: $text-main;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    border-left: 4px solid $primary;
+    padding-left: 1.2rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+  }
+
+  // --- STYLE DU TABLEAU ---
   .nexus-table-container {
-  width: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-  overflow-x: auto;
-  border-radius: 8px;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-height: 400px;
+    overflow: auto;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
     .nexus-table {
       width: 100%;
       border-collapse: separate;
@@ -61,31 +92,14 @@
           text-transform: uppercase;
           font-size: 0.75rem;
           border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-          box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
         }
       }
 
       tbody td {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
     }
-  }
-
-  .section-title {
-    color: $text-main;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    border-left: 4px solid $primary;
-    padding-left: 1.2rem;
-    letter-spacing: 0.5px;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
   }
 
   .clickable-card {
@@ -98,36 +112,9 @@
       filter: brightness(1.2);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-
-    &:active {
-      transform: scale(0.98);
-    }
   }
 
-  // --- STYLE DES CELLULES DE TABLE ---
-  
-  .table-machine-cell {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: $text-main;
-
-    .machine-icon {
-      color: $icon-color;
-      font-size: 1.1rem;
-    }
-  }
-
-  .nexus-tooltip-tip {
-    z-index: 1000;
-    width: 200px;
-    max-width: 250px;
-    white-space: normal;
-    text-align: center;
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
+  // --- BADGES ET CELLULES ---
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -136,116 +123,68 @@
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    background: $status-badge-bg;
 
-    &.warning {
-      color: $warning;
-      background: rgba($warning, 0.1);
-      border: 1px solid rgba($warning, 0.2);
+    &.warning { color: $warning; background: rgba($warning, 0.1); border: 1px solid rgba($warning, 0.2); }
+    &.critical { 
+      color: $danger; 
+      background: rgba($danger, 0.1); 
+      border: 1px solid rgba($danger, 0.2);
+      .status-icon { animation: pulse-red 2s infinite ease-in-out; }
     }
-
-    &.critical {
-      color: $danger;
-      background: $status-critical-bg;
-      border: 1px solid rgba(239, 68, 68, 0.2);
-
-      .status-icon {
-        animation: pulse-red 2s infinite ease-in-out;
-      }
-    }
-
-    &.healthy {
-      color: $success;
-      background: $status-healthy-bg;
-      border: 1px solid rgba(34, 197, 94, 0.2);
-    }
+    &.healthy { color: $success; background: rgba($success, 0.1); border: 1px solid rgba($success, 0.2); }
   }
 
-  .usage-cell {
+  .usage-icon {
+    margin-right: 8px;
+    color: $warning;
+  }
+
+  .table-machine-cell {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    
-    .usage-icon {
-      color: $warning;
-      font-size: 0.9rem;
-    }
+    gap: 12px;
+    .machine-icon { color: $primary; font-size: 1.1rem; }
   }
 
   // --- DROPDOWN DÉTAILS ---
-
   .details-dropdown {
     margin-top: 1rem;
     background: $card-bg;
     backdrop-filter: blur(12px);
-    border: 1px solid $details-dropdown-bg;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-    .dropdown-actions {
-      display: contents;
-    }
 
     .dropdown-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 1rem;
-      border-bottom: 1px solid $dropdown-header-bg;
-
-      h3 {
-        color: $text-main;
-        margin: 0;
-        font-size: 1.2rem;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
 
       .close-btn {
-        background: $dropdown-header-bg;
+        background: rgba(255, 255, 255, 0.05);
         border: none;
         color: $text-muted;
         padding: 8px;
-        border-radius: 50%;
+        border-radius: 15%;
         cursor: pointer;
-        transition: all 0.2s;
-        display: flex;
-
-        &:hover {
-          background: rgba(239, 68, 68, 0.2);
-          color: $danger;
-          transform: rotate(90deg);
-        }
-      }
-    }
-
-    .dropdown-content {
-      max-height: 400px;
-      overflow-y: auto;
-
-      &::-webkit-scrollbar { width: 6px; }
-      &::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
+        &:hover { background: rgba(239, 68, 68, 0.2); color: $danger; }
       }
     }
     
-    &.threats { border-top: 2px solid $danger; }
-    &.devices { border-top: 2px solid $primary; }
-    &.bandwidth { border-top: 2px solid $warning; }
+    &.threats { border-top: 3px solid $danger; }
+    &.devices { border-top: 3px solid $primary; }
+    &.bandwidth { border-top: 3px solid $warning; }
   }
 
   // --- ANIMATIONS ---
-
   @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-20px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes fadeIn {
@@ -254,18 +193,7 @@
   }
 
   @keyframes pulse-red {
-    0% { filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.7)); opacity: 1; }
-    50% { filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.9)); opacity: 0.7; }
-    100% { filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.7)); opacity: 1; }
-  }
-
-  .loading-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 4rem;
-    color: $table-th-color;
-    font-weight: 500;
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
   }
 }

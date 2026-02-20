@@ -1,12 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
+import { FaShieldVirus } from "react-icons/fa";
 
 const contentOptions = {
 	Simple: "Connexion",
 
 	WithIcon: (
 		<span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-			<span>🛡️</span>
+			<span>
+				<FaShieldVirus />
+			</span>
 			<span>Scan Système</span>
 		</span>
 	),

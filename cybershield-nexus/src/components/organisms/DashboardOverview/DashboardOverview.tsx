@@ -12,9 +12,15 @@ import StatCard from "../../molecules/StatCard/StatCard";
 import Table from "../../atoms/Table/Table";
 import SearchBar from "../../molecules/SearchBar/SearchBar";
 import Chart from "../../atoms/Chart/Chart";
-import { getAllTraffic } from "../../../services/network.service";
-import type { NetworkTraffic } from "../../../models/NetworkTraffic";
 import Tooltip from "../../atoms/Tooltip/Tooltip";
+import Skeleton from "../../atoms/Skeleton/Skeleton";
+
+// Services et modèles
+import { getAllTraffic } from "../../../services/network.service";
+import DeviceOverview from "../DeviceOverview/DeviceOverview";
+import type { NetworkTraffic } from "../../../models/NetworkTraffic";
+
+import keycloak from "../../../services/auth/keycloak";
 import "./DashboardOverview.scss";
 
 type SectionType = "devices" | "threats" | "bandwidth" | null;
@@ -82,19 +88,26 @@ const DashboardOverview = () => {
 		},
 	];
 
-	// --- FETCH ---
+	// --- FETCH TRAFFIC UNIQUEMENT ---
 	useEffect(() => {
-		const fetchData = async () => {
+		const fetchTrafficData = async () => {
+			if (!keycloak.authenticated) return;
+
 			try {
-				const data = await getAllTraffic();
-				setTrafficData(data);
+				setLoading(true);
+				// Simulation de latence pour voir les Skeletons
+				// await new Promise((resolve) => setTimeout(resolve, 2000));
+
+				const traffic = await getAllTraffic();
+				setTrafficData(traffic);
 			} catch (error) {
-				console.error("Erreur fetch dashboard", error);
+				console.error("Erreur Traffic Nexus:", error);
 			} finally {
 				setLoading(false);
 			}
 		};
-		fetchData();
+
+		fetchTrafficData();
 	}, []);
 
 	const handleToggleSection = (section: SectionType) => {
@@ -107,7 +120,6 @@ const DashboardOverview = () => {
 		trafficData.reduce((acc, curr) => acc + curr.currentUsage, 0) /
 		1024 /
 		1024;
-
 	const threats = trafficData.filter(
 		(t) => t.statusCode === 1 || t.statusCode === 2,
 	);
@@ -115,7 +127,7 @@ const DashboardOverview = () => {
 	const warningCount = trafficData.filter((t) => t.statusCode === 2).length;
 	const healthyCount = trafficData.filter((t) => t.statusCode === 3).length;
 
-	// --- FILTRAGE (Unique et complet) ---
+	// --- FILTRAGE ---
 	const getFilteredData = (dataToFilter: NetworkTraffic[]) => {
 		if (!searchTerm) return dataToFilter;
 		const lowerTerm = searchTerm.toLowerCase();
@@ -126,7 +138,6 @@ const DashboardOverview = () => {
 					: item.statusCode === 2
 						? "attention"
 						: "sain";
-
 			return (
 				item.hostname.toLowerCase().includes(lowerTerm) ||
 				item.ipAddress.toLowerCase().includes(lowerTerm) ||
@@ -137,7 +148,7 @@ const DashboardOverview = () => {
 
 	// --- DATA GRAPHIQUES ---
 	const threatChartData = {
-		labels: ["Sains", "Attention (High)", "Critiques"],
+		labels: ["Sains", "Attention", "Critiques"],
 		datasets: [
 			{
 				data: [healthyCount, warningCount, criticalCount],
@@ -166,8 +177,46 @@ const DashboardOverview = () => {
 		],
 	};
 
-	if (loading)
-		return <div className="loading-state">Analyse du réseau Nexus...</div>;
+	// --- Skeleton Loading ---
+	if (loading) {
+		return (
+			<div className="nexus-dashboard-overview">
+				<div className="dashboard-charts-row">
+					{[1, 2, 3].map((i) => (
+						<div key={i} className="chart-container">
+							<Skeleton
+								width="180px"
+								height="24px"
+								className="mb-4"
+							/>
+							<Skeleton
+								variant="rectangular"
+								width="100%"
+								height="250px"
+							/>
+						</div>
+					))}
+				</div>
+
+				<h2 className="section-title">
+					<Skeleton width="200px" height="32px" />
+				</h2>
+
+				<div className="stats-grid">
+					{[1, 2, 3].map((i) => (
+						<div key={i} className="stat-card-skeleton">
+							{/* On a enlevé le style={{borderRadius...}} ici */}
+							<Skeleton
+								variant="rectangular"
+								width="100%"
+								height="140px"
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="nexus-dashboard-overview">
@@ -180,6 +229,9 @@ const DashboardOverview = () => {
 						height="250px"
 					/>
 				</div>
+
+				{/* DeviceOverview gère ses propres données et son propre graphique Bar */}
+				<DeviceOverview />
 
 				<div className="chart-container doughnut-chart">
 					<h3>Répartition des Menaces</h3>
@@ -229,6 +281,7 @@ const DashboardOverview = () => {
 				</div>
 			</div>
 
+			{/* DÉTAILS DEROULANTS */}
 			{activeSection && (
 				<div className={`details-dropdown ${activeSection}`}>
 					<div className="dropdown-header">
@@ -240,7 +293,6 @@ const DashboardOverview = () => {
 							{activeSection === "bandwidth" &&
 								"Analyse du Trafic par Machine"}
 						</h3>
-
 						<div className="dropdown-actions">
 							<SearchBar
 								value={searchTerm}
@@ -254,7 +306,6 @@ const DashboardOverview = () => {
 							</button>
 						</div>
 					</div>
-
 					<div className="dropdown-content">
 						{activeSection === "devices" && (
 							<Table

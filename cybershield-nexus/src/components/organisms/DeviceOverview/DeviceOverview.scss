@@ -1,0 +1,45 @@
+@use "../../../styles/variables" as *;
+
+.chart-container.bar-chart {
+  background: rgba(15, 23, 42, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  flex: 1.2;
+  min-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba($primary, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-left: 3px solid #734dce;
+    padding-left: 10px;
+  }
+
+  .nexus-skeleton.rectangular {
+    border-radius: 8px;
+  }
+
+  .chart-wrapper {
+    width: 100%;
+    height: 100%;
+    animation: fadeInScale 0.5s ease-out;
+  }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}

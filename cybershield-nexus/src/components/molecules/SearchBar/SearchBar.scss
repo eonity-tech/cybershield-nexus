@@ -1,24 +1,29 @@
 @use "../../../styles/variables" as *;
 
-.nexus-search-bar {
-    width: 60vw;
-    
-    .clear-btn {
-        background: none;
-        border: none;
-        color: $table-th-color;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        padding: 4px;
-        transition: color 0.2s;
-        
-        &:hover {
-            color: $danger;
+.dropdown-actions{
+    display: contents;
+    display: flex;
+    .nexus-search-bar {
+        margin-right: 0.5em;
+        max-width: 60vw;
+        width: 35vw;
+        .clear-btn {
+            background: none;
+            border: none;
+            color: $table-th-color;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            transition: color 0.2s;
+            
+            &:hover {
+                color: $danger;
+            }
         }
-    }
-    
-    .nexus-input-group {
-        margin-bottom: 0;
+        
+        .nexus-input-group {
+            margin-bottom: 0;
+        }
     }
 }
