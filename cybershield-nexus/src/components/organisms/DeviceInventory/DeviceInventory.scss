@@ -1,0 +1,185 @@
+@use "../../../styles/variables" as *;
+
+.device-inventory-container {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeIn 0.4s ease-out;
+
+    // Cellule Machine
+    .table-cell-machine {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .icon-server {
+            color: $primary;
+            font-size: 1.2rem;
+        }
+        .icon-computer {
+            color: $text-muted;
+            font-size: 1.2rem;
+        }
+
+        .machine-info {
+            display: flex;
+            flex-direction: column;
+
+            .hostname {
+                font-weight: 600;
+                color: $light;
+            }
+            .mac-address {
+                font-size: 0.75rem;
+                color: $text-muted;
+                font-family: monospace;
+            }
+        }
+    }
+
+    // Cellule OS
+    .table-cell-os {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+
+        .os-icon {
+            font-size: 1.1rem;
+            &.win {
+                color: #00a4ef;
+            }
+            &.lin {
+                color: #f5c211;
+            }
+        }
+    }
+
+    // Cellule IP
+    .ip-cell {
+        font-family: monospace;
+        color: $text-main;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    // Cellule Ports
+    .ports-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+
+        .port-badge {
+            background: rgba($primary, 0.15);
+            color: lighten($primary, 20%);
+            border: 1px solid rgba($primary, 0.3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-family: monospace;
+            font-weight: 600;
+        }
+    }
+
+    // Cellule Vulnérabilité
+    .vuln-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+
+        &.safe {
+            color: $success;
+            background: rgba($success, 0.1);
+            border: 1px solid rgba($success, 0.2);
+        }
+        &.high {
+            color: $warning;
+            background: rgba($warning, 0.1);
+            border: 1px solid rgba($warning, 0.2);
+        }
+        &.critical {
+            color: $danger;
+            background: rgba($danger, 0.1);
+            border: 1px solid rgba($danger, 0.2);
+            .vuln-icon {
+                animation: pulse 2s infinite;
+            }
+        }
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.7;
+            transform: scale(1.2);
+        }
+    }
+}
+
+// Boutons d'action dans le tableau
+.action-btn {
+    padding: 6px 12px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+// Styles de la modale dynamique
+.modal-actions-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.modal-content-wrapper {
+    color: #f8fafc;
+
+    .device-details-list {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px 30px;
+        border-radius: 8px;
+        margin: 15px 0;
+        list-style: none;
+
+        li {
+            margin-bottom: 8px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .warning-text {
+        color: #ef4444;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 1rem;
+    }
+
+    .success-text {
+        color: #22c55e;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 1rem;
+    }
+}

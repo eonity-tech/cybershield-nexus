@@ -5,6 +5,7 @@ import {
 	FaNetworkWired,
 	FaTimes,
 	FaExclamationTriangle,
+	FaSkullCrossbones,
 	FaCheckCircle,
 	FaHdd,
 } from "react-icons/fa";
@@ -54,12 +55,12 @@ const DashboardOverview = () => {
 
 				if (item.statusCode === 1) {
 					statusClass = "critical";
-					Icon = FaExclamationTriangle;
+					Icon = FaSkullCrossbones;
 					label = "Critique";
 				} else if (item.statusCode === 2) {
 					statusClass = "warning";
 					Icon = FaExclamationTriangle;
-					label = "Attention";
+					label = "Élevé";
 				}
 
 				return (
@@ -136,7 +137,7 @@ const DashboardOverview = () => {
 				item.statusCode === 1
 					? "critique"
 					: item.statusCode === 2
-						? "attention"
+						? "élevé"
 						: "sain";
 			return (
 				item.hostname.toLowerCase().includes(lowerTerm) ||
@@ -148,7 +149,7 @@ const DashboardOverview = () => {
 
 	// --- DATA GRAPHIQUES ---
 	const threatChartData = {
-		labels: ["Sains", "Attention", "Critiques"],
+		labels: ["Sains", "Élevé", "Critiques"],
 		datasets: [
 			{
 				data: [healthyCount, warningCount, criticalCount],
@@ -185,31 +186,30 @@ const DashboardOverview = () => {
 					{[1, 2, 3].map((i) => (
 						<div key={i} className="chart-container">
 							<Skeleton
-								width="180px"
-								height="24px"
+								width="20vw"
+								height="4vh"
 								className="mb-4"
 							/>
 							<Skeleton
 								variant="rectangular"
 								width="100%"
-								height="250px"
+								height="25vh"
 							/>
 						</div>
 					))}
 				</div>
 
 				<h2 className="section-title">
-					<Skeleton width="200px" height="32px" />
+					<Skeleton width="20vw" height="4vh" />
 				</h2>
 
 				<div className="stats-grid">
 					{[1, 2, 3].map((i) => (
 						<div key={i} className="stat-card-skeleton">
-							{/* On a enlevé le style={{borderRadius...}} ici */}
 							<Skeleton
 								variant="rectangular"
 								width="100%"
-								height="140px"
+								height="25vh"
 							/>
 						</div>
 					))}
@@ -226,7 +226,7 @@ const DashboardOverview = () => {
 					<Chart
 						type="line"
 						data={bandwidthChartData}
-						height="250px"
+						height="25vh"
 					/>
 				</div>
 
@@ -238,12 +238,19 @@ const DashboardOverview = () => {
 					<Chart
 						type="doughnut"
 						data={threatChartData}
-						height="250px"
+						height="25vh"
 					/>
 				</div>
 			</div>
 
-			<h2 className="section-title">Points de Contrôle</h2>
+			<div className="title-header">
+				<h3>
+					<span className="title-description">
+						Points de Contrôle |
+					</span>
+					{trafficData.length} Machines Monitorées
+				</h3>
+			</div>
 
 			<div className="stats-grid">
 				<div
@@ -293,7 +300,7 @@ const DashboardOverview = () => {
 							{activeSection === "bandwidth" &&
 								"Analyse du Trafic par Machine"}
 						</h3>
-						<div className="dropdown-actions">
+						<div className="search-wrapper">
 							<SearchBar
 								value={searchTerm}
 								onChange={setSearchTerm}

@@ -1,7 +1,7 @@
 @use "./styles/variables" as *;
 
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -22,6 +22,181 @@ body {
   background-color: $dark-bg;
 }
 
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  h3 {
+    margin: 0;
+    color: $text-main;
+    font-size: 1.25rem;
+    border-left: 4px solid $primary;
+    padding-left: 10px;
+  }
+
+  .search-wrapper {
+    flex: 1;
+    max-width: 40vw;
+    min-width: 25vw;
+  }
+}
+
+// --- CONTRÔLES DE PAGINATION ---
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  .page-info {
+    color: $text-muted;
+    font-size: 0.9rem;
+
+    strong {
+      color: $text-main;
+    }
+  }
+
+  .page-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $text-main;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: rgba($primary, 0.2);
+      border-color: rgba($primary, 0.5);
+      color: lighten($primary, 10%);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.type-post {
+  background-color: $dropdown-header-bg;
+  color: $text-muted;
+  padding: 2px 8px;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.box-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  .info-container {
+    display: flex;
+    align-items: center;
+    .info-icon {
+      color: $text-muted;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.title-description {
+  color: $text-muted;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  margin: 3px 3px 0 0;
+}
+
+.chart-container {
+  background: rgba(15, 23, 42, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  flex: 1;
+  h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-left: 3px solid $slate-bg;
+    padding-left: 10px;
+  }
+  &.line-chart {
+    flex: 2;
+  }
+  &.doughnut-chart {
+    flex: 1;
+  }
+}
+
+.section-title {
+  color: $text-main;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  border-left: 3px solid $primary;
+  padding-left: 1.2rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.nexus-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: $dark-bg;
+  overflow: hidden;
+
+  // Zone principale (à droite de la sidebar)
+  .nexus-main {
+    flex: 1;
+    width: 0;
+    padding: 2.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+    h1 {
+      color: $light;
+      font-size: 1.8rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
+    .description-header {
+      color: $text-muted;
+      font-size: 1rem;
+    }
+  }
+  .user-info-container {
+    margin-bottom: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .user-info {
+      text-align: center;
+      color: $text-muted;
+      font-size: 0.8rem;
+      font-family: monospace;
+    }
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -37,7 +212,9 @@ a {
   }
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin-top: 0;
   color: $light;
 }

@@ -43,7 +43,7 @@ export const CardLoadingExample: Story = {
       border: "1px solid #333", 
       padding: "20px", 
       borderRadius: "8px", 
-      width: "300px",
+      width: "20vw",
       background: "#1a1a1a"
     }}>
       {/* Header avec Avatar et Nom */}
@@ -56,7 +56,7 @@ export const CardLoadingExample: Story = {
       </div>
 
       {/* Corps de la carte */}
-      <Skeleton variant="rectangular" width="100%" height={150} style={{ marginBottom: "10px" }} />
+      <Skeleton variant="rectangular" width="100%" height="25vh" style={{ marginBottom: "10px" }} />
       
       {/* Description */}
       <Skeleton variant="text" />

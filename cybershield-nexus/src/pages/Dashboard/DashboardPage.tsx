@@ -1,29 +1,20 @@
-import Sidebar from "../../components/organisms/Sidebar/Sidebar";
 import DashboardOverview from "../../components/organisms/DashboardOverview/DashboardOverview";
-import { useAuth } from "../../services/auth/AuthContext";
 import "./DashboardPage.scss";
 
 const DashboardPage = () => {
-	const { username } = useAuth();
-
 	return (
-		<div className="nexus-dashboard-page">
-			<Sidebar />
+		<div className="nexus-x-page">
+			<header className="page-header">
+				<h2>Dashboard</h2>
+				<p className="description-header">
+					Vue d'ensemble des points critiques de votre surface
+					d'attaque et des tendances de sécurité.
+				</p>
+			</header>
 
-			<main className="dashboard-main">
-				<header className="dashboard-header">
-					<h1>Dashboard</h1>
-					<p className="user-info">
-						Analyste Connecté :{" "}
-						<strong>{username || "eonity"}</strong>
-					</p>
-				</header>
-
-				<section className="dashboard-content">
-					<DashboardOverview />{" "}
-					{/* Pour les statistiques clés et graphiques */}
-				</section>
-			</main>
+			<section className="dashboard-content">
+				<DashboardOverview />
+			</section>
 		</div>
 	);
 };

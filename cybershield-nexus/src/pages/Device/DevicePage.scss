@@ -1,0 +1,44 @@
+@use "../../styles/variables" as *;
+
+.nexus-x-page {
+  width: 100%;
+  animation: pageFadeIn 0.4s ease-out forwards;
+
+  .page-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1.5rem;
+
+    h2 {
+      color: $text-main;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

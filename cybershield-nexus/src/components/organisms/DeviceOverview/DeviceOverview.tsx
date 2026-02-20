@@ -58,8 +58,8 @@ const DeviceOverview = () => {
 	if (loading) {
 		return (
 			<div className="chart-container bar-chart">
-				<Skeleton width="180px" height="24px" className="mb-4" />
-				<Skeleton variant="rectangular" width="100%" height="250px" />
+				<Skeleton width="20vw" height="4vh" className="mb-4" />
+				<Skeleton variant="rectangular" width="100%" height="25vh" />
 			</div>
 		);
 	}
@@ -67,7 +67,7 @@ const DeviceOverview = () => {
 	return (
 		<div className="chart-container bar-chart">
 			<h3>Analyse des Ports Visés</h3>
-			<Chart type="bar" data={getPortStats()} height="250px" />
+			<Chart type="bar" data={getPortStats()} height="25vh" />
 		</div>
 	);
 };

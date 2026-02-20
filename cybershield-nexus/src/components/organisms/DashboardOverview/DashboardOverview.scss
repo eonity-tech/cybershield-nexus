@@ -9,29 +9,6 @@
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
-
-    .chart-container {
-      background: rgba(15, 23, 42, 0.4);
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      flex: 1;
-
-      h3 {
-        margin-top: 0;
-        margin-bottom: 20px;
-        color: $text-main;
-        font-size: 1.1rem;
-      }
-
-      &.line-chart {
-        flex: 2;
-      }
-
-      &.doughnut-chart {
-        flex: 1;
-      }
-    }
   }
 
   // --- GRILLE DE STATISTIQUES & SKELETONS ---
@@ -39,7 +16,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin: 2.5rem 0;
 
     .stat-card-skeleton {
       border-radius: 12px;
@@ -48,56 +25,6 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       .nexus-skeleton {
         border-radius: 12px;
-      }
-    }
-  }
-
-  .section-title {
-    color: $text-main;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    border-left: 4px solid $primary;
-    padding-left: 1.2rem;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-  }
-
-  // --- STYLE DU TABLEAU ---
-  .nexus-table-container {
-    width: 100%;
-    max-height: 400px;
-    overflow: auto;
-    border-radius: 8px;
-    background: rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-
-    .nexus-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      text-align: left;
-
-      thead {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: $card-bg;
-
-        th {
-          padding: 12px 16px;
-          color: $table-th-color;
-          font-weight: 600;
-          text-transform: uppercase;
-          font-size: 0.75rem;
-          border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-        }
-      }
-
-      tbody td {
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
     }
   }
@@ -124,14 +51,24 @@
     font-size: 0.85rem;
     font-weight: 600;
 
-    &.warning { color: $warning; background: rgba($warning, 0.1); border: 1px solid rgba($warning, 0.2); }
-    &.critical { 
-      color: $danger; 
-      background: rgba($danger, 0.1); 
-      border: 1px solid rgba($danger, 0.2);
-      .status-icon { animation: pulse-red 2s infinite ease-in-out; }
+    &.warning {
+      color: $warning;
+      background: rgba($warning, 0.1);
+      border: 1px solid rgba($warning, 0.2);
     }
-    &.healthy { color: $success; background: rgba($success, 0.1); border: 1px solid rgba($success, 0.2); }
+    &.critical {
+      color: $danger;
+      background: rgba($danger, 0.1);
+      border: 1px solid rgba($danger, 0.2);
+      .status-icon {
+        animation: pulse-red 2s infinite ease-in-out;
+      }
+    }
+    &.healthy {
+      color: $success;
+      background: rgba($success, 0.1);
+      border: 1px solid rgba($success, 0.2);
+    }
   }
 
   .usage-icon {
@@ -143,7 +80,10 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    .machine-icon { color: $primary; font-size: 1.1rem; }
+    .machine-icon {
+      color: $primary;
+      font-size: 1.1rem;
+    }
   }
 
   // --- DROPDOWN DÉTAILS ---
@@ -172,28 +112,54 @@
         padding: 8px;
         border-radius: 15%;
         cursor: pointer;
-        &:hover { background: rgba(239, 68, 68, 0.2); color: $danger; }
+        &:hover {
+          background: rgba(239, 68, 68, 0.2);
+          color: $danger;
+        }
       }
     }
-    
-    &.threats { border-top: 3px solid $danger; }
-    &.devices { border-top: 3px solid $primary; }
-    &.bandwidth { border-top: 3px solid $warning; }
+
+    &.threats {
+      border-top: 3px solid $danger;
+    }
+    &.devices {
+      border-top: 3px solid $primary;
+    }
+    &.bandwidth {
+      border-top: 3px solid $warning;
+    }
   }
 
   // --- ANIMATIONS ---
   @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes pulse-red {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.1); }
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.1);
+    }
   }
 }

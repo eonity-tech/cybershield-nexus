@@ -1,0 +1,166 @@
+@use "../../../styles/variables" as *;
+
+.network-analyze-container {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeIn 0.4s ease-out;
+
+    // --- STYLE DU GRAPHIQUE ---
+    .chart-container {
+        background: rgba(15, 23, 42, 0.4);
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: $text-main;
+            font-size: 1.1rem;
+        }
+    }
+
+    // --- CELLULE MACHINE ---
+    .net-machine-cell {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        .net-icon {
+            color: $primary;
+            font-size: 1.5rem;
+        }
+
+        .hostname {
+            font-weight: 600;
+            color: $light;
+            font-size: 0.95rem;
+        }
+
+        .ip {
+            font-size: 0.8rem;
+            color: $text-muted;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            margin-top: 3px;
+        }
+    }
+
+    // --- CELLULE LOGICIELS ---
+    .softwares-cell {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        .soft-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba($primary, 0.15);
+            color: lighten($primary, 15%);
+            border: 1px solid rgba($primary, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: rgba($primary, 0.25);
+            }
+        }
+    }
+
+    // --- CELLULE TRAFIC ---
+    .usage-cell {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", "Fira Code", monospace;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 8px;
+
+        &.normal {
+            color: $text-main;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid transparent;
+        }
+
+        &.warning {
+            color: $warning;
+            background: rgba($warning, 0.1);
+            border: 1px solid rgba($warning, 0.3);
+        }
+
+        &.high {
+            color: $danger;
+            background: rgba($danger, 0.1);
+            border: 1px solid rgba($danger, 0.3);
+
+            svg {
+                animation: pulse-traffic 1.5s infinite ease-in-out;
+            }
+        }
+    }
+
+    // --- CELLULE DIAGNOSTIC ---
+    .net-status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        &.healthy {
+            color: $success;
+            background: rgba($success, 0.15);
+            border: 1px solid rgba($success, 0.3);
+        }
+
+        &.warning {
+            color: $warning;
+            background: rgba($warning, 0.15);
+            border: 1px solid rgba($warning, 0.3);
+        }
+
+        &.critical {
+            color: $danger;
+            background: rgba($danger, 0.15);
+            border: 1px solid rgba($danger, 0.3);
+
+            .status-icon {
+                animation: pulse-traffic 2s infinite;
+            }
+        }
+    }
+
+    // --- ANIMATIONS ---
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes pulse-traffic {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+    }
+}

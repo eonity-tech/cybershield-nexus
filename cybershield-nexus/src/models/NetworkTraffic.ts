@@ -6,4 +6,6 @@ export interface NetworkTraffic {
   currentUsage: number;
   statusCode: number;
   message: string;
+  trafficSeverity: string;
+  typePoste: string;
 }

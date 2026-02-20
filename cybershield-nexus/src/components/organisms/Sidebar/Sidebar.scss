@@ -19,7 +19,6 @@
 
     .logo-text,
     .nav-item .label,
-    .user-box,
     .logout-text {
       opacity: 0;
       width: 0;
@@ -138,14 +137,6 @@
     border-top: 1px solid $card-bg;
     overflow: hidden;
     white-space: nowrap;
-
-    .user-box {
-        margin-bottom: 1rem;
-        transition: opacity 0.2s;
-        
-        .user-label { font-size: 0.7rem; color: $text-muted; text-transform: uppercase; margin: 0; }
-        .user-name { color: $text-main; font-weight: 600; margin: 0; }
-    }
 
     .logout-btn {
       width: 100%;

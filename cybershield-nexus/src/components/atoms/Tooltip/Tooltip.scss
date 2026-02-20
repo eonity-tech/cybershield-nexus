@@ -4,11 +4,11 @@
     display: inline-block;
     position: relative;
     user-select: none;
-
+    
     &.helpable {
         cursor: help;
     }
-
+    
     &.clickable {
         cursor: pointer;
     }
@@ -16,17 +16,23 @@
 
 .nexus-tooltip-tip {
     position: absolute;
+    max-width: 40vw; 
+    width: max-content; 
     border-radius: 4px;
-    padding: 6px 12px;
-    color: $light;
-    background: $dark-bg;
+    padding: 8px 12px;
+    background: $card-bg;
+    color: $text-muted;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.75rem;
-    z-index: 1000;
-    white-space: nowrap;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    z-index: 999999 !important;
+    white-space: normal; 
+    overflow-wrap: break-word; 
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-    pointer-events: none; // Évite de bloquer la souris
+    pointer-events: none;
 
+    /* Le petit triangle */
     &::before {
         content: "";
         position: absolute;
@@ -36,10 +42,7 @@
 
     /* TOP */
     &.top {
-        bottom: calc(100% + 10px);
-        left: 50%;
-        transform: translateX(-50%);
-        animation: fade-top 0.2s ease-out;
+        animation: fade-top 0.2s ease-out forwards;
         &::before {
             top: 100%; left: 50%; margin-left: -5px;
             border-top-color: rgba($light, 0.1);
@@ -48,10 +51,7 @@
 
     /* BOTTOM */
     &.bottom {
-        top: calc(100% + 10px);
-        left: 50%;
-        transform: translateX(-50%);
-        animation: fade-bottom 0.2s ease-out;
+        animation: fade-bottom 0.2s ease-out forwards;
         &::before {
             bottom: 100%; left: 50%; margin-left: -5px;
             border-bottom-color: rgba($light, 0.1);
@@ -60,10 +60,7 @@
 
     /* LEFT */
     &.left {
-        top: 50%;
-        right: calc(100% + 10px);
-        transform: translateY(-50%);
-        animation: fade-left 0.2s ease-out;
+        animation: fade-left 0.2s ease-out forwards;
         &::before {
             left: 100%; top: 50%; margin-top: -5px;
             border-left-color: rgba($light, 0.1);
@@ -72,10 +69,7 @@
 
     /* RIGHT */
     &.right {
-        top: 50%;
-        left: calc(100% + 10px);
-        transform: translateY(-50%);
-        animation: fade-right 0.2s ease-out;
+        animation: fade-right 0.2s ease-out forwards;
         &::before {
             right: 100%; top: 50%; margin-top: -5px;
             border-right-color: rgba($light, 0.1);
@@ -83,20 +77,19 @@
     }
 }
 
-/* ANIMATIONS DÉDIÉES POUR GARDER LE CONTEXTE */
 @keyframes fade-top {
-    from { opacity: 0; transform: translate(-50%, 4px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+    from { opacity: 0; transform: translate(-50%, calc(-100% + 6px)); }
+    to { opacity: 1; transform: translate(-50%, -100%); }
 }
 @keyframes fade-bottom {
-    from { opacity: 0; transform: translate(-50%, -4px); }
+    from { opacity: 0; transform: translate(-50%, -6px); }
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 @keyframes fade-left {
-    from { opacity: 0; transform: translate(4px, -50%); }
-    to { opacity: 1; transform: translate(0, -50%); }
+    from { opacity: 0; transform: translate(calc(-100% + 6px), -50%); }
+    to { opacity: 1; transform: translate(-100%, -50%); }
 }
 @keyframes fade-right {
-    from { opacity: 0; transform: translate(-4px, -50%); }
+    from { opacity: 0; transform: translate(-6px, -50%); }
     to { opacity: 1; transform: translate(0, -50%); }
 }

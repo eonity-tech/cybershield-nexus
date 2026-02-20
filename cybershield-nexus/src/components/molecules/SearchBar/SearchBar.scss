@@ -1,6 +1,6 @@
 @use "../../../styles/variables" as *;
 
-.dropdown-actions{
+.search-wrapper {
     display: contents;
     display: flex;
     .nexus-search-bar {
@@ -16,12 +16,12 @@
             align-items: center;
             padding: 4px;
             transition: color 0.2s;
-            
+
             &:hover {
                 color: $danger;
             }
         }
-        
+
         .nexus-input-group {
             margin-bottom: 0;
         }

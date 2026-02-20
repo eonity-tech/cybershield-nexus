@@ -25,9 +25,15 @@
     max-height: 90vh;
     animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-    &.small { width: 400px; }
-    &.medium { width: 600px; }
-    &.large { width: 900px; }
+    &.small {
+        width: 40vw;
+    }
+    &.medium {
+        width: 60vw;
+    }
+    &.large {
+        width: 90vw;
+    }
 
     .modal-header {
         padding: 1.5rem;
@@ -49,7 +55,9 @@
             cursor: pointer;
             font-size: 1.2rem;
             transition: color 0.2s;
-            &:hover { color: $danger; }
+            &:hover {
+                color: $danger;
+            }
         }
     }
 
@@ -70,5 +78,21 @@
     }
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
