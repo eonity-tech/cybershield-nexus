@@ -202,11 +202,11 @@ const DeviceInventory = () => {
 				let Icon = FaCheckCircle;
 				let label = "Sain";
 
-				if (dev.trafficSeverity === "CRITICAL") {
+				if (dev.vulnerabilityLevel === "CRITICAL") {
 					statusClass = "critical";
 					Icon = FaSkullCrossbones;
 					label = "Critique";
-				} else if (dev.trafficSeverity === "HIGH") {
+				} else if (dev.vulnerabilityLevel === "HIGH") {
 					statusClass = "high";
 					Icon = FaExclamationTriangle;
 					label = "Élevé";
@@ -299,12 +299,24 @@ const DeviceInventory = () => {
 	return (
 		<div className="device-inventory-container">
 			<div className="title-header">
-				<h3>
+									<h3>
+						<span className="title-description">Parc informatique | </span>
+						{filteredDevices.length} appareils détectés
+						{criticalCount > 0 && (
+							<span
+								className="critical-counter-badge"
+								title="Appareils en état critique">
+								{criticalCount} critique
+								{criticalCount > 1 ? "s" : ""}
+							</span>
+						)}
+					</h3>
+				{/* <h3>
 					<span className="title-description">
 						Parc informatique |
 					</span>
 					{criticalCount} appareils critiques détectés
-				</h3>
+				</h3> */}
 
 				<div className="search-wrapper">
 					<SearchBar

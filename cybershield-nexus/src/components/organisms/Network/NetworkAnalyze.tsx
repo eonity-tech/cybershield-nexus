@@ -263,13 +263,13 @@ const NetworkAnalyze = () => {
 				<div className="title-header">
 					<h3>
 						<span className="title-description">Trafic | </span>
-						{filteredData.length} flux détectés{" "}
+						{filteredData.length} flux détectés
 						{criticalCount > 0 && (
 							<span
 								className="critical-counter-badge"
 								title="Flux réseau en état critique">
-								( {criticalCount} critique
-								{criticalCount > 1 ? "s" : ""} )
+								{criticalCount} critique
+								{criticalCount > 1 ? "s" : ""}
 							</span>
 						)}
 					</h3>

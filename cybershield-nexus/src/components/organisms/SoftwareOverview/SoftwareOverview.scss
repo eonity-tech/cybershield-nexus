@@ -1,0 +1,8 @@
+@use "../../../styles/variables" as *;
+
+.software-overview {
+
+  h3 {
+    border-left-color: $primary; 
+  }
+}

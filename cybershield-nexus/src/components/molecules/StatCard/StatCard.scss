@@ -1,14 +1,15 @@
 @use "../../../styles/variables" as *;
 
 .stat-card {
-  background: $card-bg;
-  border-radius: $radius-lg;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid $border-color;
-  transition: transform 0.2s;
+    background: $card-bg;
+    border-radius: $radius-lg;
+    padding: 0.5em 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid $border-color;
+    transition: transform 0.2s;
+    height: 85px;
 
   &:hover { 
     transform: translateY(-3px); 

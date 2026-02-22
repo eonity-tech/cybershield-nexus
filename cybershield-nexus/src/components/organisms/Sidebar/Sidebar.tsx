@@ -42,6 +42,12 @@ const Sidebar = () => {
 			icon: <FaNetworkWired />,
 			path: "/reseaux",
 		},
+		{
+			id: "software",
+			label: "Logiciels",
+			icon: <FaUserShield />,
+			path: "/logiciels",
+		},
 		{ id: "admin", label: "Admin", icon: <FaUserShield />, path: "/admin" },
 	];
 

@@ -1,9 +1,24 @@
 @use "../../styles/variables" as *;
 
-
 // Grille pour les cartes (StatCards)
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+
+    @media (max-width: 1890px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1420px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 1080px) {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

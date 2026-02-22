@@ -1,19 +1,20 @@
 // 1. Couleurs de base
-$dark-bg: #0f172a;       // Bleu très sombre (fond principal)
-$card-bg: #1e293b;       // Bleu ardoise (fond des cartes/sidebar)
-$border-color: #334155;  // Couleur des bordures discrètes
+$dark-bg: #0f172a; // Bleu très sombre (fond principal)
+$card-bg: #1e293b; // Bleu ardoise (fond des cartes/sidebar)
+$border-color: #334155; // Couleur des bordures discrètes
 
 // 2. Couleurs d'accentuation
-$primary: #3b82f6;       // Bleu brillant (boutons, liens)
-$primary-hover: #60a5fa; 
-$success: #1ea54f;       // Vert (badges "Actif")
-$warning: #da9112;       // Orange (badges "Maintenance")
-$danger: #cc3a3a;        // Rouge (badges "Critique", alertes)
-$light: #ffffff;        // Blanc (éléments clairs)
+$primary-dark: #144ba3; // Bleu foncé (hover, éléments actifs)
+$primary: #3b82f6; // Bleu brillant (boutons, liens)
+$primary-hover: #60a5fa;
+$success: #1ea54f; // Vert (badges "Actif")
+$warning: #da9112; // Orange (badges "Maintenance")
+$danger: #cc3a3a; // Rouge (badges "Critique", alertes)
+$light: #ffffff; // Blanc (éléments clairs)
 
 // 3. Couleurs de texte
-$text-main: #f8fafc;     // Blanc cassé (texte principal)
-$text-muted: #94a3b8;    // Gris bleu (labels, textes secondaires)
+$text-main: #f8fafc; // Blanc cassé (texte principal)
+$text-muted: #94a3b8; // Gris bleu (labels, textes secondaires)
 
 // 4. Dimensions et espacements
 $sidebar-width: 260px;
@@ -25,7 +26,7 @@ $shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 $glass-bg: rgba(30, 41, 59, 0.7);
 
 // 6. Autres variables
-$table-th-color : #94a3b8; // Couleur des textes dans les table
+$table-th-color: #94a3b8; // Couleur des textes dans les table
 $icon-color: #64748b; // Couleur des icônes dans les cellules de table
 $status-badge-bg: rgba(255, 255, 255, 0.03); // Fond des badges de statut
 $status-critical-bg: rgba(239, 68, 68, 0.1); // Fond des badges critiques
@@ -36,3 +37,4 @@ $slate-bg: #364254; // Couleur de fond pour les boutons "slate"
 $item-color: #cbd5e1; // Couleur des items dans les listes
 $pre-bg: #0d1117; // Couleur de fond pour les blocs de code
 $target-color: #734dce; // Couleur pour les éléments ciblés
+$switch-color: #9ca3af; // Couleur pour les éléments du switch

@@ -8,6 +8,8 @@ import MainLayout from "../layouts/MainLayout";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
 import DevicePage from "../pages/Device/DevicePage";
 import NetworkPage from "../pages/Network/NetworkPage";
+import SoftwarePage from "../pages/Software/SoftwarePage";
+import NotFoundPage from "../pages/NotFound/NotFoundPage";
 
 const AppRouter = () => {
 	return (
@@ -22,6 +24,7 @@ const AppRouter = () => {
 					<Route path="/dashboard" element={<DashboardPage />} />
 					<Route path="/appareils" element={<DevicePage />} />
 					<Route path="/reseaux" element={<NetworkPage />} />
+					<Route path="/logiciels" element={<SoftwarePage />} />
 				</Route>
 
 				{/* Les routes hors du layout s'afficheront sans Sidebar */}
@@ -29,8 +32,7 @@ const AppRouter = () => {
 					path="*"
 					element={
 						<div style={{ padding: "2rem", color: "white" }}>
-							{/* TODO: Ajouter une page 404 personnalisée */}
-							Erreur 404
+							<NotFoundPage />
 						</div>
 					}
 				/>

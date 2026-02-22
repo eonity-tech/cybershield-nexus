@@ -1,0 +1,174 @@
+@use "../../../styles/variables" as *;
+
+.software-inventory-container {
+    background: $dark-bg;
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    .title-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    // Cellules personnalisées
+    .table-cell-software {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .icon-software {
+            color: $primary; // Bleu ciel pour le software
+            font-size: 1.2rem;
+        }
+
+        .software-info {
+            display: flex;
+            flex-direction: column;
+
+            .software-name {
+                font-weight: 600;
+                color: $light;
+            }
+            .software-version {
+                font-size: 0.8rem;
+                color: $text-muted;
+            }
+        }
+    }
+
+    .table-cell-publisher {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $text-muted;
+
+        .icon-publisher {
+            color: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    .running-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+
+        &.active {
+            color: $success;
+        }
+        &.inactive {
+            color: $text-muted;
+        }
+    }
+
+    // Barre de progression pour le score
+    .score-cell {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .score-bar-bg {
+            width: 80px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+
+            .score-bar-fill {
+                height: 100%;
+                border-radius: 4px;
+                transition: width 0.3s ease;
+
+                &.safe {
+                    background: $success;
+                }
+                &.warning {
+                    background: $warning;
+                }
+                &.danger {
+                    background: $danger;
+                }
+            }
+        }
+
+        .score-value {
+            font-size: 0.85rem;
+            color: $text-muted;
+            min-width: 45px;
+        }
+    }
+
+    // Badge de vulnérabilité réutilisé
+    .vuln-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+
+        &.safe {
+            color: $success;
+            background: rgba($success, 0.1);
+            border: 1px solid rgba($success, 0.2);
+        }
+        &.warning {
+            color: $warning;
+            background: rgba($warning, 0.1);
+            border: 1px solid rgba($warning, 0.2);
+        }
+        &.critical {
+            color: $danger;
+            background: rgba($danger, 0.1);
+            border: 1px solid rgba($danger, 0.2);
+        }
+    }
+
+    // Pagination (identique à DeviceInventory)
+    .pagination-controls {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        .page-info {
+            color: $text-muted;
+            font-size: 0.9rem;
+            strong {
+                color: $light;
+            }
+        }
+
+        .page-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: $primary;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover:not(:disabled) {
+                background: rgba(255, 255, 255, 0.1);
+                color: $light;
+            }
+            &:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+        }
+    }
+}

@@ -1,0 +1,86 @@
+@use "../../../styles/variables" as *;
+
+.atom-switch-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: inherit;
+    margin-bottom: 16px;
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+
+        .switch-wrapper, .switch-label {
+            cursor: not-allowed;
+        }
+    }
+
+    .switch-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $switch-color;
+        transition: color 0.3s ease;
+        user-select: none;
+        cursor: pointer;
+
+        &.active {
+            color: $light;
+        }
+    }
+
+    .switch-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 24px;
+        cursor: pointer;
+        border-radius: 9999px;
+        outline: none;
+
+        &:focus-visible .switch-slider {
+            box-shadow: 0 0 0 2px $card-bg, 0 0 0 4px $primary;
+        }
+
+        .switch-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            margin: 0;
+            position: absolute;
+        }
+
+        .switch-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: $border-color;
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+
+            &::before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background-color: $light;
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* État "Checked" (Appareils) */
+        .switch-input:checked + .switch-slider {
+            background-color: $primary; /* Bleu Cybershield */
+        }
+
+        .switch-input:checked + .switch-slider::before {
+            transform: translateX(20px);
+        }
+    }
+}
